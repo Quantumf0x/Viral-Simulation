@@ -5,5 +5,5 @@ public:
   virtual void iets() = 0;
   
 private:
-}
 };
+}

@@ -7,5 +7,5 @@ public:
   void iets();
   
 private:
-}
 };
+}
