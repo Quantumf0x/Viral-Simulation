@@ -1,7 +1,10 @@
 #include "RegularMovementStrategy.h"
 namespace corsim
 {
-void RegularMovementStrategy::iets(){
-
-}
+    int RegularMovementStrategy::getSpeed(){
+        return this->speed;
+    }
+    void RegularMovementStrategy::setSpeed(int currentSpeed){
+        this->speed = currentSpeed;
+    }
 }

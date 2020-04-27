@@ -2,7 +2,10 @@
 
 namespace corsim
 {
-void LockdownMovementStrategy::iets(){
-
-}
+    int LockdownMovementStrategy::getSpeed(){
+        return this->speed;
+    }
+    void LockdownMovementStrategy::setSpeed(int currentSpeed){
+        this->speed = currentSpeed;
+    }
 }

@@ -16,6 +16,7 @@
 
 #include "subject.h"
 #include <math.h>
+#include "strategys/MovementStrategy.h"
 
 namespace corsim
 {
@@ -27,7 +28,10 @@ Subject::Subject(int x, int y, int radius, bool infected)
     this->_radius = radius;
     this->_infected = infected;
 }
-
+//welke strategie gebruiken
+void Subject::strategy(corsim::MovementStrategy current_strategy){
+    this->current_strategy = &current_strategy;
+}
 double Subject::x()
 {
     return this->_x;
@@ -77,12 +81,22 @@ bool Subject::infected()
 {
     return this->_infected;
 }
-
 void Subject::infect()
 {
     this->_infected = true;
 }
-
+//cure 
+bool Subject::cured(){
+    return this->_cured;
+}
+void Subject::cure()
+{
+    this->_cured = true;
+}
+//not immuun function when 20 sec time passed remove immunity
+bool remove_immunity(){
+    return false;
+}
 double Subject::angle()
 {
     return atan2(_dy,_dx);
@@ -91,6 +105,10 @@ double Subject::angle()
 double Subject::speed()
 {
     return sqrt(_dx * _dx + _dy * _dy);
+}
+//speed change on strategy
+int Subject::currentSpeed(){
+    return this->current_strategy->getSpeed();
 }
 
 }

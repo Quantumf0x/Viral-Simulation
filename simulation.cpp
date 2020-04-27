@@ -112,6 +112,9 @@ void Simulation::draw_to_canvas()
         {
             c = RED;
         }
+        if(s.cured()){
+             c = GREEN;
+        }
 
         _canvas.get()->draw_ellipse(s.x(), s.y(), s.radius(), c);
     }

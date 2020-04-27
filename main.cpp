@@ -20,13 +20,17 @@
 #include <math.h>
 #include "html_canvas.h"
 #include "ChartJS_handler.h"
+#include "strategys/MovementStrategy.h"
+#include "strategys/RegularMovementStrategy.h"
+#include "strategys/LockdownMovementStrategy.h"
+
+
 
 //Constants to control the simulation
 const int SUBJECT_COUNT = 200;
 const int SIM_WIDTH = 800;
 const int SIM_HEIGHT = 500;
 const int SUBJECT_RADIUS = 2;
-
 int main() {
     corsim::Simulation s(SIM_WIDTH,SIM_HEIGHT,std::make_unique<corsim::HTMLCanvas>(30,150,SIM_WIDTH,SIM_HEIGHT),
         std::make_unique<corsim::ChartJSHandler>());
@@ -48,7 +52,12 @@ int main() {
 
         su.set_dx(dist_dx(mt));
         su.set_dy(dist_dy(mt));
-
+        // if(i == (SUBJECT_COUNT * 0.75)){ //75 % in lockdown
+        //     //lockdown strategie
+        // }
+        // else{
+        //     //regular movement
+        // }
         if(i == SUBJECT_COUNT-1)
         {
             su.infect();
