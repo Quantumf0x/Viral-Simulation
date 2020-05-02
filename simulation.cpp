@@ -81,6 +81,11 @@ void Simulation::tick()
         s.set_x(s.x() + s.dx() * dt);
         s.set_y(s.y() + s.dy() * dt);
 
+        if(s.cured()){
+            if (counter - s.timepassedimmunity() ==  20){
+                s.remove_immunity(counter);
+            }
+        }
         if(s.infected())
         {
             numberInfected++;

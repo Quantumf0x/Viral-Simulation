@@ -4,8 +4,9 @@ namespace corsim
 {
 class RegularMovementStrategy : public MovementStrategy{
     public:
-        virtual int getSpeed();
-        virtual void setSpeed(int currentSpeed);
+        RegularMovementStrategy();
+        int getSpeed();
+        void setSpeed(int currentSpeed);
     private:
 };
 }

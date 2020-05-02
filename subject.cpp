@@ -29,8 +29,8 @@ Subject::Subject(int x, int y, int radius, bool infected)
     this->_infected = infected;
 }
 //welke strategie gebruiken
-void Subject::strategy(corsim::MovementStrategy current_strategy){
-    this->current_strategy = &current_strategy;
+void Subject::strategy(corsim::MovementStrategy *current_strategy){
+    this->current_strategy = current_strategy;
 }
 double Subject::x()
 {
@@ -81,9 +81,14 @@ bool Subject::infected()
 {
     return this->_infected;
 }
+//To DO: only infect when subject is not immuun
 void Subject::infect()
 {
     this->_infected = true;
+}
+//checks time passed infected subject after .. seconds add immunity
+int Subject::timepassedinfected(){
+    return this->_cured;
 }
 //cure 
 bool Subject::cured(){
@@ -93,9 +98,14 @@ void Subject::cure()
 {
     this->_cured = true;
 }
-//not immuun function when 20 sec time passed remove immunity
-bool remove_immunity(){
-    return false;
+//remove immunity from cured person
+bool Subject::remove_immunity(int counter){
+    this->_infected = false;
+    this->_cured = counter; // set on current tick then count ticks until 20 sec then remove immunity
+}
+//checks time passed immunity subject
+int Subject::timepassedimmunity(){
+    return this->_infected;
 }
 double Subject::angle()
 {

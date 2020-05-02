@@ -28,7 +28,7 @@ class Subject
 {
     public:
         Subject(int x, int y, int radius, bool infected);
-        void strategy(corsim::MovementStrategy current_strategy);
+        void strategy(corsim::MovementStrategy *current_strategy);
         corsim::MovementStrategy *current_strategy;
         double x();
         double y();
@@ -42,8 +42,11 @@ class Subject
         bool infected();
         void infect();
         //added cure
+        int timepassedinfected();
         bool cured();
         void cure();
+        bool remove_immunity(int counter);
+        int timepassedimmunity();
         double angle();
         double speed();
         int currentSpeed();

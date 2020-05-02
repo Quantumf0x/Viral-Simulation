@@ -2,6 +2,10 @@
 
 namespace corsim
 {
+    //constructor to set speed
+    LockdownMovementStrategy::LockdownMovementStrategy(){
+        this->setSpeed(0);
+    }
     int LockdownMovementStrategy::getSpeed(){
         return this->speed;
     }

@@ -52,12 +52,16 @@ int main() {
 
         su.set_dx(dist_dx(mt));
         su.set_dy(dist_dy(mt));
-        // if(i == (SUBJECT_COUNT * 0.75)){ //75 % in lockdown
-        //     //lockdown strategie
-        // }
-        // else{
-        //     //regular movement
-        // }
+        if(i >= (SUBJECT_COUNT * 0.75)){ //75 % in lockdown
+            //lockdown strategie
+            corsim::LockdownMovementStrategy lockdownmovement;
+            su.strategy(&lockdownmovement);
+        }
+        else{
+            //regular movement
+            corsim::RegularMovementStrategy regularmovement;
+            su.strategy(&regularmovement);
+        }
         if(i == SUBJECT_COUNT-1)
         {
             su.infect();
