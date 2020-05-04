@@ -82,14 +82,20 @@ void Simulation::tick()
         s.set_y(s.y() + s.dy() * dt);
 
         if(s.cured()){
-            if (counter - s.timepassedimmunity() ==  20){
-                s.remove_immunity(counter);
+            if ((counter - s.timepassedimmunity()) <= 20){
+                s.remove_immunity();
             }
         }
-        if(s.infected())
-        {
+        if(s.infected()){
+            if ((counter - s.timepassedinfected()) >= 50){
+                s.remove_infected(counter);
+            }
             numberInfected++;
         }
+        // if(s.infected())
+        // {
+        //     numberInfected++;
+        // }
     }
 
     if(counter % 30 == 0)
@@ -162,8 +168,8 @@ void Simulation::subject_collision(Subject& s1, Subject& s2)
     {
         if(s1.infected() || s2.infected())
         {
-            s1.infect();
-            s2.infect();
+            s1.infect(counter);
+            s2.infect(counter);
         }        
 
         double theta1 = s1.angle();

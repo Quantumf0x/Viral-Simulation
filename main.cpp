@@ -52,7 +52,7 @@ int main() {
 
         su.set_dx(dist_dx(mt));
         su.set_dy(dist_dy(mt));
-        if(i >= (SUBJECT_COUNT * 0.75)){ //75 % in lockdown
+        if(i >= (SUBJECT_COUNT /4*3)){ //75 % in lockdown
             //lockdown strategie
             corsim::LockdownMovementStrategy lockdownmovement;
             su.strategy(&lockdownmovement);
@@ -64,7 +64,7 @@ int main() {
         }
         if(i == SUBJECT_COUNT-1)
         {
-            su.infect();
+            su.infect(i);
         }
 
         s.add_subject(std::move(su));

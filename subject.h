@@ -40,12 +40,13 @@ class Subject
         void set_dx(double dx);
         void set_dy(double dy);
         bool infected();
-        void infect();
+        void infect(int counter);
         //added cure
         int timepassedinfected();
         bool cured();
         void cure();
-        bool remove_immunity(int counter);
+        void remove_infected(int counter);
+        void remove_immunity();
         int timepassedimmunity();
         double angle();
         double speed();

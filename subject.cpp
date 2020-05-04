@@ -79,12 +79,19 @@ int Subject::radius()
 
 bool Subject::infected()
 {
-    return this->_infected;
+    if(this->_infected == false){
+        return false;
+    }
+    else{
+    return true;
+    }
 }
 //To DO: only infect when subject is not immuun
-void Subject::infect()
+void Subject::infect(int counter)
 {
-    this->_infected = true;
+    if(this->_cured == false){   
+        this->_infected = counter;
+    }
 }
 //checks time passed infected subject after .. seconds add immunity
 int Subject::timepassedinfected(){
@@ -92,20 +99,30 @@ int Subject::timepassedinfected(){
 }
 //cure 
 bool Subject::cured(){
-    return this->_cured;
+    //return this->_cured;
+    if(this->_cured == false){
+        return false;
+    }
+    else{
+    return true;
+    }
 }
 void Subject::cure()
 {
     this->_cured = true;
 }
-//remove immunity from cured person
-bool Subject::remove_immunity(int counter){
+//adds immunity and removes infection
+void Subject::remove_infected(int counter){
     this->_infected = false;
     this->_cured = counter; // set on current tick then count ticks until 20 sec then remove immunity
 }
+//remove immunity from cured person
+void Subject::remove_immunity(){
+    this->_cured = false;
+}
 //checks time passed immunity subject
 int Subject::timepassedimmunity(){
-    return this->_infected;
+    return this->_cured;
 }
 double Subject::angle()
 {
@@ -121,4 +138,4 @@ int Subject::currentSpeed(){
     return this->current_strategy->getSpeed();
 }
 
-}
+}//namespace
