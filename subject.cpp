@@ -28,10 +28,10 @@ Subject::Subject(int x, int y, int radius, bool infected)
     this->_radius = radius;
     this->_infected = infected;
 }
-//welke strategie gebruiken
-void Subject::strategy(corsim::MovementStrategy *current_strategy){
-    this->current_strategy = current_strategy;
-}
+// //welke strategie gebruiken
+// void Subject::strategy(corsim::MovementStrategy *current_strategy){
+//     this->current_strategy = current_strategy;
+// }
 double Subject::x()
 {
     return this->_x;
@@ -50,6 +50,16 @@ void Subject::set_x(double x)
 void Subject::set_y(double y)
 {
     this->_y = y;
+}
+
+bool Subject::getDontMove()
+{
+    return this->_move;
+}
+
+void Subject::setDontMove(bool move)
+{
+    this->_move = move;
 }
 
 double Subject::dx()
@@ -79,51 +89,54 @@ int Subject::radius()
 
 bool Subject::infected()
 {
-    if(this->_infected == false){
-        return false;
-    }
-    else{
-    return true;
-    }
+    // if(this->_infected == false){
+    //     return false;
+    // }
+    // else{
+    // return true;
+    // }
+    return this->_infected;
 }
 //To DO: only infect when subject is not immuun
 void Subject::infect(int counter)
 {
-    if(this->_cured == false){   
-        this->_infected = counter;
-    }
+    // if(this->_cured == false){   
+    //     this->_infected = counter;
+    // }
+    this->_infected = true;
+
 }
-//checks time passed infected subject after .. seconds add immunity
-int Subject::timepassedinfected(){
-    return this->_cured;
-}
-//cure 
-bool Subject::cured(){
-    //return this->_cured;
-    if(this->_cured == false){
-        return false;
-    }
-    else{
-    return true;
-    }
-}
-void Subject::cure()
-{
-    this->_cured = true;
-}
-//adds immunity and removes infection
-void Subject::remove_infected(int counter){
-    this->_infected = false;
-    this->_cured = counter; // set on current tick then count ticks until 20 sec then remove immunity
-}
-//remove immunity from cured person
-void Subject::remove_immunity(){
-    this->_cured = false;
-}
-//checks time passed immunity subject
-int Subject::timepassedimmunity(){
-    return this->_cured;
-}
+// //checks time passed infected subject after .. seconds add immunity
+// int Subject::timepassedinfected(){
+//     return this->_cured;
+// }
+// //cure 
+// bool Subject::cured(){
+//     return this->_cured;
+//     // if(this->_cured == false){
+//     //     return false;
+//     // }
+//     // else{
+//     // return true;
+//     // }
+// }
+// void Subject::cure()
+// {
+//     this->_cured = true;
+// }
+// //adds immunity and removes infection
+// void Subject::remove_infected(int counter){
+//     this->_infected = false;
+//     this->_cured = counter; // set on current tick then count ticks until 20 sec then remove immunity
+// }
+// //remove immunity from cured person
+// void Subject::remove_immunity(){
+//     this->_cured = false;
+// }
+// //checks time passed immunity subject
+// int Subject::timepassedimmunity(){
+//     return this->_cured;
+// }
 double Subject::angle()
 {
     return atan2(_dy,_dx);
@@ -133,9 +146,6 @@ double Subject::speed()
 {
     return sqrt(_dx * _dx + _dy * _dy);
 }
-//speed change on strategy
-int Subject::currentSpeed(){
-    return this->current_strategy->getSpeed();
-}
+
 
 }//namespace

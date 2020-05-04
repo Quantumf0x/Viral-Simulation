@@ -4,9 +4,7 @@ namespace corsim
 {
 class RegularMovementStrategy : public MovementStrategy{
     public:
-        RegularMovementStrategy();
-        int getSpeed();
-        void setSpeed(int currentSpeed);
+ int movement(int counter, std::vector<Subject> &_subjects, int nrOfSubjects);
     private:
 };
 }

@@ -3,9 +3,8 @@ namespace corsim
 {
 class LockdownMovementStrategy : public MovementStrategy{
   public:
-    LockdownMovementStrategy();
-    int getSpeed();
-    void setSpeed(int currentSpeed);
+  int movement(int counter, std::vector<Subject> &_subjects, int nrOfSubjects);
   private:
+  bool _running = false;
 };
 }

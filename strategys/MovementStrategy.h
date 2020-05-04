@@ -1,11 +1,11 @@
 #pragma once
+#include <vector>
+#include "../subject.h"
+
 namespace corsim
 {
     class MovementStrategy {
     public:
-      int speed;
-      virtual int getSpeed() = 0;
-      virtual void setSpeed(int currentSpeed) = 0;
-    private:
+      virtual int movement(int counter, std::vector<Subject> &_subjects, int nrOfSubjects) = 0;
     };
 }

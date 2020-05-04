@@ -20,11 +20,6 @@
 #include <math.h>
 #include "html_canvas.h"
 #include "ChartJS_handler.h"
-#include "strategys/MovementStrategy.h"
-#include "strategys/RegularMovementStrategy.h"
-#include "strategys/LockdownMovementStrategy.h"
-
-
 
 //Constants to control the simulation
 const int SUBJECT_COUNT = 200;
@@ -52,16 +47,7 @@ int main() {
 
         su.set_dx(dist_dx(mt));
         su.set_dy(dist_dy(mt));
-        if(i >= (SUBJECT_COUNT /4*3)){ //75 % in lockdown
-            //lockdown strategie
-            corsim::LockdownMovementStrategy lockdownmovement;
-            su.strategy(&lockdownmovement);
-        }
-        else{
-            //regular movement
-            corsim::RegularMovementStrategy regularmovement;
-            su.strategy(&regularmovement);
-        }
+
         if(i == SUBJECT_COUNT-1)
         {
             su.infect(i);

@@ -18,6 +18,8 @@
 #include <iostream>
 #include <emscripten.h>
 #include <math.h>
+#include "strategys/LockdownMovementStrategy.h"
+
 
 namespace corsim
 {
@@ -74,29 +76,32 @@ void Simulation::tick()
         }
     }
 
-    int numberInfected = 0;
+    //int numberInfected = 0;
 
-    for(Subject& s : _subjects)
-    {
-        s.set_x(s.x() + s.dx() * dt);
-        s.set_y(s.y() + s.dy() * dt);
+    // for(Subject& s : _subjects)
+    // {
+    //     s.set_x(s.x() + s.dx() * dt);
+    //     s.set_y(s.y() + s.dy() * dt);
 
-        if(s.cured()){
-            if ((counter - s.timepassedimmunity()) <= 20){
-                s.remove_immunity();
-            }
-        }
-        if(s.infected()){
-            if ((counter - s.timepassedinfected()) >= 50){
-                s.remove_infected(counter);
-            }
-            numberInfected++;
-        }
-        // if(s.infected())
-        // {
-        //     numberInfected++;
-        // }
-    }
+    //     if(s.cured()){
+    //         if ((counter - s.timepassedimmunity()) <= 20){
+    //             s.remove_immunity();
+    //         }
+    //     }
+    //     if(s.infected()){
+    //         if ((counter - s.timepassedinfected()) >= 50){
+    //             s.remove_infected(counter);
+    //         }
+    //         numberInfected++;
+    //     }
+    //     // if(s.infected())
+    //     // {
+    //     //     numberInfected++;
+    //     // }
+    // }
+    LockdownMovementStrategy lockdownmovement;
+
+    int numberInfected = lockdownmovement.movement(dt, _subjects, counter/30);
 
     if(counter % 30 == 0)
     {
@@ -123,9 +128,9 @@ void Simulation::draw_to_canvas()
         {
             c = RED;
         }
-        if(s.cured()){
-             c = GREEN;
-        }
+        // if(s.cured()){
+        //      c = GREEN;
+        // }
 
         _canvas.get()->draw_ellipse(s.x(), s.y(), s.radius(), c);
     }

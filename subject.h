@@ -15,7 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once 
-#include "strategys/MovementStrategy.h"
+//#include "strategys/MovementStrategy.h"
 
 namespace corsim
 {
@@ -28,8 +28,8 @@ class Subject
 {
     public:
         Subject(int x, int y, int radius, bool infected);
-        void strategy(corsim::MovementStrategy *current_strategy);
-        corsim::MovementStrategy *current_strategy;
+        // void strategy(corsim::MovementStrategy *current_strategy);
+        // corsim::MovementStrategy *current_strategy;
         double x();
         double y();
         void set_x(double x);
@@ -39,21 +39,24 @@ class Subject
         int radius(); //Radius needed for collisions
         void set_dx(double dx);
         void set_dy(double dy);
+        bool getDontMove();
+        void setDontMove(bool move);
         bool infected();
         void infect(int counter);
         //added cure
-        int timepassedinfected();
-        bool cured();
-        void cure();
-        void remove_infected(int counter);
-        void remove_immunity();
-        int timepassedimmunity();
+        // int timepassedinfected();
+        // bool cured();
+        // void cure();
+        // void remove_infected(int counter);
+        // void remove_immunity();
+        // int timepassedimmunity();
         double angle();
         double speed();
-        int currentSpeed();
+        // int currentSpeed();
     private:
         double _x = 0,_y = 0, _dx = 0, _dy = 0;
         bool _infected = false;
+        bool _move = false; 
         bool _cured = false;
         int _radius = 0;
 };
