@@ -1,8 +1,8 @@
 MKFILE_PATH := $(abspath $(dir $(firstword $(MAKEFILE_LIST))))
 
 PATH_TO_EMCC = /home/viral/emsdk/upstream/emscripten/emcc
-HEADER_FILES = canvas.h ChartJS_handler.h html_canvas.h simulation.h statistics_handler.h subject.h strategys/MovementStrategy.h strategys/LockdownMovementStrategy.h strategys/RegularMovementStrategy.h
-SOURCE_FILES = ChartJS_handler.cpp html_canvas.cpp main.cpp simulation.cpp subject.cpp strategys/LockdownMovementStrategy.cpp strategys/RegularMovementStrategy.cpp
+HEADER_FILES = canvas.h ChartJS_handler.h html_canvas.h simulation.h statistics_handler.h subject.h strategys/MovementStrategy.h strategys/LockdownMovementStrategy.h strategys/RegularMovementStrategy.h strategys/CureLockdownMovementStrategy.h
+SOURCE_FILES = ChartJS_handler.cpp html_canvas.cpp main.cpp simulation.cpp subject.cpp strategys/LockdownMovementStrategy.cpp strategys/RegularMovementStrategy.cpp strategys/CureLockdownMovementStrategy.cpp
 
 OUTPUT_PATH=$(MKFILE_PATH)/build/
 OUTPUT_FILE_NAME=index.html

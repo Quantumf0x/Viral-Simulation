@@ -1,8 +1,10 @@
-#include "LockdownMovementStrategy.h"
+#include "CureLockdownMovementStrategy.h"
+#include <iostream>
+
 
 namespace corsim
 { 
-    int LockdownMovementStrategy::movement(int counter, std::vector<Subject> &_subjects, int nrOfSubjects){
+    int CureLockdownMovementStrategy::movement(int counter, std::vector<Subject> &_subjects, int nrOfSubjects){
         int numberInfected = 0;
         
         if (_running == false){
@@ -16,6 +18,18 @@ namespace corsim
         for(Subject& s : _subjects)
         {
             if(s.getDontMove() != true){
+                    s.counttick++;
+                    if (s.counttick == 100)
+                    {
+                        s.remove_infected();
+                        std::cout << "cured" << std::endl;
+                        s.counttick = 0;
+                    }
+                if (s.countCuretick == 75)
+                {
+                    s.countCuretick = 0;
+                    s.curedSubject = false;
+                }
             s.set_x(s.x() + s.dx() * counter);
             s.set_y(s.y() + s.dy() * counter);
 
@@ -27,4 +41,4 @@ namespace corsim
         }
         return numberInfected;
     }
-}
+}//namespace

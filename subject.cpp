@@ -17,7 +17,6 @@
 #include "subject.h"
 #include <math.h>
 #include "strategys/MovementStrategy.h"
-
 namespace corsim
 {
 
@@ -28,10 +27,6 @@ Subject::Subject(int x, int y, int radius, bool infected)
     this->_radius = radius;
     this->_infected = infected;
 }
-// //welke strategie gebruiken
-// void Subject::strategy(corsim::MovementStrategy *current_strategy){
-//     this->current_strategy = current_strategy;
-// }
 double Subject::x()
 {
     return this->_x;
@@ -89,54 +84,24 @@ int Subject::radius()
 
 bool Subject::infected()
 {
-    // if(this->_infected == false){
-    //     return false;
-    // }
-    // else{
-    // return true;
-    // }
     return this->_infected;
 }
 //To DO: only infect when subject is not immuun
-void Subject::infect(int counter)
+void Subject::infect()
 {
-    // if(this->_cured == false){   
-    //     this->_infected = counter;
-    // }
     this->_infected = true;
-
+    this->counttick = 0;
 }
-// //checks time passed infected subject after .. seconds add immunity
-// int Subject::timepassedinfected(){
-//     return this->_cured;
-// }
 // //cure 
-// bool Subject::cured(){
-//     return this->_cured;
-//     // if(this->_cured == false){
-//     //     return false;
-//     // }
-//     // else{
-//     // return true;
-//     // }
-// }
-// void Subject::cure()
-// {
-//     this->_cured = true;
-// }
+bool Subject::cured(){
+    return this->curedSubject;
+}
 // //adds immunity and removes infection
-// void Subject::remove_infected(int counter){
-//     this->_infected = false;
-//     this->_cured = counter; // set on current tick then count ticks until 20 sec then remove immunity
-// }
-// //remove immunity from cured person
-// void Subject::remove_immunity(){
-//     this->_cured = false;
-// }
-// //checks time passed immunity subject
-// int Subject::timepassedimmunity(){
-//     return this->_cured;
-// }
+void Subject::remove_infected(){
+    this->_infected = false;
+    this->countCuretick = 0; // set on current tick then count ticks until 20 sec then remove immunity
+    this->curedSubject = true;
+}
 double Subject::angle()
 {
     return atan2(_dy,_dx);

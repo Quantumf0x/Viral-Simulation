@@ -50,7 +50,7 @@ int main() {
 
         if(i == SUBJECT_COUNT-1)
         {
-            su.infect(i);
+            su.infect();
         }
 
         s.add_subject(std::move(su));

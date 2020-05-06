@@ -19,7 +19,8 @@
 #include <emscripten.h>
 #include <math.h>
 #include "strategys/LockdownMovementStrategy.h"
-
+#include "strategys/CureLockdownMovementStrategy.h"
+#include <iostream>
 
 namespace corsim
 {
@@ -75,33 +76,11 @@ void Simulation::tick()
             subject_collision(*current_checking, *s);
         }
     }
+    // LockdownMovementStrategy lockdownmovement;
+    CureLockdownMovementStrategy curelockdownmovement;
 
-    //int numberInfected = 0;
-
-    // for(Subject& s : _subjects)
-    // {
-    //     s.set_x(s.x() + s.dx() * dt);
-    //     s.set_y(s.y() + s.dy() * dt);
-
-    //     if(s.cured()){
-    //         if ((counter - s.timepassedimmunity()) <= 20){
-    //             s.remove_immunity();
-    //         }
-    //     }
-    //     if(s.infected()){
-    //         if ((counter - s.timepassedinfected()) >= 50){
-    //             s.remove_infected(counter);
-    //         }
-    //         numberInfected++;
-    //     }
-    //     // if(s.infected())
-    //     // {
-    //     //     numberInfected++;
-    //     // }
-    // }
-    LockdownMovementStrategy lockdownmovement;
-
-    int numberInfected = lockdownmovement.movement(dt, _subjects, counter/30);
+    // int numberInfected = lockdownmovement.movement(dt, _subjects, counter/30);
+    int numberInfected = curelockdownmovement.movement(dt, _subjects, counter/30);
 
     if(counter % 30 == 0)
     {
@@ -128,9 +107,10 @@ void Simulation::draw_to_canvas()
         {
             c = RED;
         }
-        // if(s.cured()){
-        //      c = GREEN;
-        // }
+        // if(s.countCuretick > 0 && s.countCuretick < 50){
+        if(s.cured()){
+             c = GREEN;
+        }
 
         _canvas.get()->draw_ellipse(s.x(), s.y(), s.radius(), c);
     }
@@ -173,8 +153,11 @@ void Simulation::subject_collision(Subject& s1, Subject& s2)
     {
         if(s1.infected() || s2.infected())
         {
-            s1.infect(counter);
-            s2.infect(counter);
+            if(s1.countCuretick == 0 || s2.countCuretick == 0)
+            {
+            s1.infect();
+            s2.infect();
+            }
         }        
 
         double theta1 = s1.angle();

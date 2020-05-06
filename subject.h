@@ -42,22 +42,23 @@ class Subject
         bool getDontMove();
         void setDontMove(bool move);
         bool infected();
-        void infect(int counter);
+        void infect();
         //added cure
         // int timepassedinfected();
-        // bool cured();
-        // void cure();
-        // void remove_infected(int counter);
+        bool cured();
+        void cure();
+        void remove_infected();
         // void remove_immunity();
-        // int timepassedimmunity();
+        int timepassedimmunity();        
         double angle();
         double speed();
-        // int currentSpeed();
+        int counttick = 0;
+        int countCuretick = 0;
+        bool curedSubject = false;
     private:
         double _x = 0,_y = 0, _dx = 0, _dy = 0;
         bool _infected = false;
         bool _move = false; 
-        bool _cured = false;
         int _radius = 0;
 };
 
