@@ -44,11 +44,8 @@ class Subject
         bool infected();
         void infect();
         //added cure
-        // int timepassedinfected();
         bool cured();
-        void cure();
         void remove_infected();
-        // void remove_immunity();
         int timepassedimmunity();        
         double angle();
         double speed();

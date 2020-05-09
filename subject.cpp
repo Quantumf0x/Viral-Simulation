@@ -86,20 +86,19 @@ bool Subject::infected()
 {
     return this->_infected;
 }
-//To DO: only infect when subject is not immuun
 void Subject::infect()
 {
     this->_infected = true;
     this->counttick = 0;
 }
-// //cure 
+//cure when true subject is cured
 bool Subject::cured(){
     return this->curedSubject;
 }
-// //adds immunity and removes infection
+//adds immunity and removes infection
 void Subject::remove_infected(){
     this->_infected = false;
-    this->countCuretick = 0; // set on current tick then count ticks until 20 sec then remove immunity
+    this->countCuretick = 0; 
     this->curedSubject = true;
 }
 double Subject::angle()

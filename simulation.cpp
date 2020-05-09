@@ -20,7 +20,6 @@
 #include <math.h>
 #include "strategys/LockdownMovementStrategy.h"
 #include "strategys/CureLockdownMovementStrategy.h"
-#include <iostream>
 
 namespace corsim
 {
@@ -107,7 +106,6 @@ void Simulation::draw_to_canvas()
         {
             c = RED;
         }
-        // if(s.countCuretick > 0 && s.countCuretick < 50){
         if(s.cured()){
              c = GREEN;
         }
