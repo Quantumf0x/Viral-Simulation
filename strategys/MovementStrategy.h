@@ -6,6 +6,6 @@ namespace corsim
 {
     class MovementStrategy {
     public:
-      virtual int movement(int counter, std::vector<Subject> &_subjects, int nrOfSubjects) = 0;
+      virtual int movement(int counter, std::vector<Subject> &_subjects, int calculation) = 0;
     };
 }

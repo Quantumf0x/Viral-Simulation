@@ -2,7 +2,7 @@
 
 namespace corsim
 { 
-    int CureLockdownMovementStrategy::movement(int counter, std::vector<Subject> &_subjects, int nrOfSubjects){
+    int CureLockdownMovementStrategy::movement(int counter, std::vector<Subject> &_subjects, int calculation){
         int numberInfected = 0;
         
         if (_running == false){
