@@ -20,6 +20,7 @@
 #include <math.h>
 #include "strategys/LockdownMovementStrategy.h"
 #include "strategys/CureLockdownMovementStrategy.h"
+#include "strategys/RegularMovementStrategy.h"
 
 namespace corsim
 {
@@ -75,9 +76,11 @@ void Simulation::tick()
             subject_collision(*current_checking, *s);
         }
     }
+    //RegularMovementStrategy regularmovement;
     // LockdownMovementStrategy lockdownmovement;
     CureLockdownMovementStrategy curelockdownmovement;
 
+    //int numberInfected = regularmovement.movement(dt, _subjects, counter/30);
     // int numberInfected = lockdownmovement.movement(dt, _subjects, counter/30);
     int numberInfected = curelockdownmovement.movement(dt, _subjects, counter/30);
 
